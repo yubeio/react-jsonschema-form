@@ -159,6 +159,7 @@ export default function validateFormData(
   } catch (e) {
     // swallow errors thrown in ajv due to invalid schemas, these
     // still get displayed
+    console.error(e);
   }
 
   let errors = transformAjvErrors(ajv.errors);
@@ -182,3 +183,9 @@ export default function validateFormData(
 
   return { errors: newErrors, errorSchema: newErrorSchema };
 }
+
+function getValidator() {
+  return ajv;
+}
+
+export { getValidator, validateFormData };
